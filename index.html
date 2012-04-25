@@ -1,0 +1,39 @@
+<!doctype html>  
+<html>
+  <head>
+    <title>pixel nommers</title>
+    <link href="" id='favicon' rel="icon" type="image/png" />
+  </head>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    body{
+      position:relative;
+      overflow:hidden;
+    }
+    div{
+      background:rgba(155,200,255,0.3);
+      position:absolute;
+      width:10px;
+      height:10px;
+      border-radius:5px;
+      margin:-5px;
+      z-index:10;
+    }
+    canvas{
+      position:absolute;
+      z-index:1;
+    }
+  </style>
+  <body>
+    <script src="requestAnimFrame.js"></script>
+    <script src="player.js"></script>
+    <script src="canvas.js"></script>
+    <script src="pointer.js"></script>
+    <script src="gamepad.js"></script>
+    <script src="input.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
