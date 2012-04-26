@@ -1,4 +1,4 @@
-var Canvas = function(){
+window.classes.Canvas = function(){
   var canvas = document.createElement('canvas');
   var ctx = canvas.getContext('2d');
   var bgColour = "white";
