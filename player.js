@@ -1,4 +1,4 @@
-var Player = function(context){
+window.classes.Player = function(context){
   var ctx = context;
   var size = 1;
   var x = 80;
