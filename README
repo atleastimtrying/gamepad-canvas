@@ -1,5 +1,7 @@
 This is my first experiment making use of the gamepad api, for now it is aimed at chrome on OSX.
 
+Dependent on gamepad.js and requestAnimationFrame.
+
 Anders
 
 ^__^
