@@ -1,10 +1,10 @@
-var App = function(){
+window.classes.App = function(){
 
-  var canvas = new Canvas();
+  var canvas = new window.classes.Canvas();
   var ctx = canvas.getContext();
-  var pointer = new Pointer();
-  var player = new Player(ctx);
-  var input = new Input();
+  var pointer = new window.classes.Pointer();
+  var player = new window.classes.Player(ctx);
+  var input = new window.classes.Input();
   var selectOnce = true;
   
   this.animate = function(){
