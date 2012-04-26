@@ -1,11 +1,11 @@
-window.classes.Player = function(context, enemies){
+window.classes.Enemy = function(context, collection){
   var ctx = context;
-  var size = 2;
+  var size = utils.roundom(3) + 1;
   var x = utils.roundom(600);
   var y = utils.roundom(400);
   var xVel = 0;
   var yVel = 0;
-  var colour = "red";
+  var colour = "black";
 
   var move = function(){
     x += xVel;
