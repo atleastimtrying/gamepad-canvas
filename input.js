@@ -1,4 +1,4 @@
-var Input = function(){
+window.classes.Input = function(){
   this.read = function(){
     var pad = Gamepad.getState(0);
     if (pad) {
