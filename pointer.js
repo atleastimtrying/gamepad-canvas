@@ -1,4 +1,4 @@
-var Pointer = function(){
+window.classes.Pointer = function(){
   var setupDiv = function(){
     var div = document.createElement('div');
     document.querySelector('body').appendChild(div);
