@@ -13,7 +13,7 @@ window.classes.Enemies = function(context, player){
     for(var i = 0, l = collection.length; i < l; ++i){
       var enemy = collection[i];
       if(utils.intersect(player,enemy)){
-        console.log('intersection');
+        utils.fight(player,enemy).die();
       }else{
         enemy.animate();
       }

@@ -40,4 +40,5 @@ window.classes.Enemy = function(context, collection){
     xVel = newX;
     yVel = newY;
   };
+
 };
