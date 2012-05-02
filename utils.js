@@ -23,10 +23,16 @@ window.utils = {
   },
 
   fight:function(player,enemy){
-    if(player.getSize() > enemy.getSize()){
-      return player;
+    var loser;
+    if(player.getSize() < enemy.getSize()){
+      loser = player;
     }else{
-      return enemy;
+      loser = enemy;
     }
+    return loser;
+  },
+  
+  amIBigger: function(me, them){
+    return me.getSize() < them.getSize();
   }
 };

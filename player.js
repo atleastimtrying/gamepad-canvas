@@ -1,6 +1,6 @@
 window.classes.Player = function(context, enemies){
   var ctx = context;
-  var size = 2;
+  var size = 5;
   var x = utils.roundom(600);
   var y = utils.roundom(400);
   var xVel = 0;
@@ -39,5 +39,11 @@ window.classes.Player = function(context, enemies){
   this.setVelocity = function(newX, newY){
     xVel = newX;
     yVel = newY;
+  };
+  
+  this.die = function(){
+    alert('player died');
+    x = 0;
+    y = 0;
   };
 };

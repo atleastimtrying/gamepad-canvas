@@ -1,10 +1,12 @@
 window.classes.Enemy = function(context, collection){
   var ctx = context;
-  var size = utils.roundom(3) + 1;
+  var size = utils.roundom(5) + 1;
   var x = utils.roundom(600);
   var y = utils.roundom(400);
   var xVel = 0;
   var yVel = 0;
+  var sightRange = size * 10;
+  var alive = true;
   var colour = "black";
 
   var move = function(){
@@ -16,10 +18,18 @@ window.classes.Enemy = function(context, collection){
     ctx.translate(x,y);
     ctx.fillStyle = colour;
     ctx.fillEllipse(0, 0, size);
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
+    ctx.fillEllipse(0, 0, sightRange);
     ctx.translate(-x,-y);
   };
+  
+  var sense = function(){
+    //range = utils.dist(this, );
+    console.log(collection);
+  }
 
   this.animate = function(){
+    sense();
     move();
     draw();
   };
@@ -40,5 +50,12 @@ window.classes.Enemy = function(context, collection){
     xVel = newX;
     yVel = newY;
   };
+  
+  this.die = function(){
+    alive = false;
+  };
 
+  this.isAlive = function(){
+    return alive
+  }
 };

@@ -27,19 +27,19 @@ describe("Utils", function() {
   it("can compare sizes player > enemy",function(){
     var player = { getSize:function(){ return 3; }};
     var enemy = { getSize:function(){ return 1; }};
-    expect(utils.fight(player,enemy)).toEqual(player);
+    expect(utils.fight(player,enemy)).toEqual(enemy);
   });
 
   it("can compare sizes enemy > player",function(){
     var player = { getSize:function(){ return 3; }};
     var enemy = { getSize:function(){ return 5; }};
-    expect(utils.fight(player,enemy)).toEqual(enemy);
+    expect(utils.fight(player,enemy)).toEqual(player);
   });
 
   it("can compare sizes enemy = player",function(){
     var player = { getSize:function(){ return 5; }};
     var enemy = { getSize:function(){ return 5; }};
-    expect(utils.fight(player,enemy)).toEqual(player);
+    expect(utils.fight(player,enemy)).toEqual(enemy);
   });
   
 });
