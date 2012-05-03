@@ -1,20 +1,24 @@
-window.classes.App = function(){
-  var input = new window.classes.Input();
-  var canvas = new window.classes.Canvas();
-  var ctx = canvas.getContext();
-  var player = new window.classes.Player(ctx);
-  var enemies = new window.classes.Enemies(ctx,player);
-  this.animate = function(){
-    canvas.clear();
-    results = input.read();
-    player.setVelocity(results.leftStickX, results.leftStickY);
-    player.animate();
-    enemies.animate();
+(function() {
+  window.App = (function() {
+    function App() {
+      this.input = new window.classes.Input();
+      this.canvas = new window.classes.Canvas();
+      this.ctx = this.canvas.getContext();
+      this.player = new window.classes.Player(this.ctx);
+      this.enemies = new window.classes.Enemies(this.ctx, this.player);
+    }
+    App.prototype.animate = function() {
+      var results;
+      this.canvas.clear();
+      results = this.input.read();
+      this.player.setVelocity(results.leftStickX, results.leftStickY);
+      this.player.animate();
+      return this.enemies.animate();
+    };
+    return App;
+  })();
+  window.onload = function() {
+    window.app = new window.App();
+    return window.utils.animate();
   };
-
-};
-
-window.onload = function(){
-  window.app = new window.classes.App();
-  window.utils.animate();
-};
+}).call(this);

@@ -8,16 +8,6 @@
   <link rel="stylesheet" type="text/css" href="lib/jasmine-1.2.0.rc3/jasmine.css">
   <script type="text/javascript" src="lib/jasmine-1.2.0.rc3/jasmine.js"></script>
   <script type="text/javascript" src="lib/jasmine-1.2.0.rc3/jasmine-html.js"></script>
-
-  <!-- include source files here... -->
-  <script type="text/javascript" src="../utils.js"></script>
-  <script type="text/javascript" src="../enemy.js"></script>
-  <script type="text/javascript" src="../player.js"></script>
-
-  <!-- include spec files here... -->
-  <script type="text/javascript" src="spec/utils.js"></script>
-  <!--<script type="text/javascript" src="spec/EnemySpec.js"></script>-->
-
   <script type="text/javascript">
     (function() {
       var jasmineEnv = jasmine.getEnv();
@@ -48,5 +38,17 @@
   </script>
 </head>
 <body>
+  
+    <script>
+      window.classes = {};
+    </script>
+    <!-- include source files here... -->
+    <script type="text/javascript" src="../utils.js"></script>
+    <script type="text/javascript" src="../enemy.js"></script>
+    <script type="text/javascript" src="../player.js"></script>
+
+    <!-- include spec files here... -->
+    <script type="text/javascript" src="spec/utils.js"></script>
+    <script type="text/javascript" src="spec/enemy.js"></script>
 </body>
 </html>
