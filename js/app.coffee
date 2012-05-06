@@ -12,6 +12,7 @@ class window.App
     @player.animate()
     @enemies.animate()
 
-window.onload = ->
+$ ->
+  window.utils = new window.classes.Utils()
   window.app = new window.App()
   window.utils.animate()

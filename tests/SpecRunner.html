@@ -41,11 +41,14 @@
   
     <script>
       window.classes = {};
+      window.onload = function(){
+        window.utils = new window.classes.Utils();
+      }
     </script>
     <!-- include source files here... -->
-    <script type="text/javascript" src="../utils.js"></script>
-    <script type="text/javascript" src="../enemy.js"></script>
-    <script type="text/javascript" src="../player.js"></script>
+    <script type="text/javascript" src="../js/utils.js"></script>
+    <script type="text/javascript" src="../js/enemy.js"></script>
+    <script type="text/javascript" src="../js/player.js"></script>
 
     <!-- include spec files here... -->
     <script type="text/javascript" src="spec/utils.js"></script>

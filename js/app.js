@@ -17,8 +17,9 @@
     };
     return App;
   })();
-  window.onload = function() {
+  $(function() {
+    window.utils = new window.classes.Utils();
     window.app = new window.App();
     return window.utils.animate();
-  };
+  });
 }).call(this);
