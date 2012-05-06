@@ -4,8 +4,8 @@
       this.ctx = ctx;
       this.collection = collection;
       this.size = utils.roundom(7) + 1;
-      this.x = utils.roundom(600);
-      this.y = utils.roundom(400);
+      this.x = utils.roundom(700);
+      this.y = utils.roundom(500);
       this.xVel = 0;
       this.yVel = 0;
       this.sightRange = this.size * 10;
@@ -29,6 +29,9 @@
       this.sense();
       this.move();
       return this.draw();
+    };
+    Enemy.prototype.eat = function() {
+      return "wuh?";
     };
     Enemy.prototype.getX = function() {
       return this.x;

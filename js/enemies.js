@@ -23,7 +23,7 @@
           }
         }
       }
-      if (this.collection.length < 1) {
+      if (this.collection.length < 30) {
         return this.add();
       }
     };

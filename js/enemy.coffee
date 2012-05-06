@@ -1,8 +1,8 @@
 class window.classes.Enemy
   constructor: (@ctx, @collection)->
     @size = utils.roundom(7) + 1
-    @x = utils.roundom 600
-    @y = utils.roundom 400
+    @x = utils.roundom 700
+    @y = utils.roundom 500
     @xVel = 0
     @yVel = 0
     @sightRange = @size * 10
@@ -32,6 +32,8 @@ class window.classes.Enemy
     @move()
     @draw()
     #@dieTest()
+
+  eat: -> "wuh?"
 
   getX: -> @x
 
