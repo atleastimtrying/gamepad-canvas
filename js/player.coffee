@@ -1,11 +1,17 @@
 class window.classes.Player
   constructor: (@ctx, enemies)->
-    @size = 5
+    @size = 2
     @x = utils.roundom 600
     @y = utils.roundom 400
     @xVel = 0
     @yVel = 0
     @colour = "red"
+
+  edges: ->
+    @x = 0 if @x > app.canvas.width
+    @y = 0 if @y > app.canvas.height
+    @x = app.canvas.width if @x < 0
+    @y = app.canvas.height if @y < 0
 
   move: ->
     @x += @xVel
@@ -19,6 +25,7 @@ class window.classes.Player
 
   animate: ->
     @move()
+    @edges()
     @draw()
 
   getX: -> @x
@@ -31,10 +38,10 @@ class window.classes.Player
     #@collection.delete @
 
   setVelocity: (newX, newY)->
-    @xVel = newX
-    @yVel = newY
+    @xVel = newX * 2
+    @yVel = newY * 2
   
   die: ->
-    alert 'player died'
+    #alert 'player died'
     @x = 0
     @y = 0

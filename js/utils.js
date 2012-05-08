@@ -34,8 +34,8 @@
       loser.die();
       return winner.eat();
     };
-    Utils.prototype.amIBigger = function(player, enemy) {
-      return player.getSize() < enemy.getSize();
+    Utils.prototype.isPlayerBigger = function(player, enemy) {
+      return player.getSize() > enemy.getSize();
     };
     return Utils;
   })();

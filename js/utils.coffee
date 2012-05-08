@@ -28,5 +28,5 @@ class window.classes.Utils
     loser.die()
     winner.eat()
   
-  amIBigger: (player, enemy)->
-    player.getSize() < enemy.getSize()
+  isPlayerBigger: (player, enemy)->
+    player.getSize() > enemy.getSize()

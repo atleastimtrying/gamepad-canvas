@@ -13,4 +13,4 @@ class window.classes.Enemies
       if enemy.alive
         enemy.animate()
         utils.fight @player, enemy if utils.intersect @player,enemy
-    @add() if @collection.length < 30
+    @add() if @collection.length < 10
