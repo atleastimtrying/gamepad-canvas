@@ -16,11 +16,9 @@
       _ref = this.collection;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         enemy = _ref[_i];
-        if (enemy.alive) {
-          enemy.animate();
-          if (utils.intersect(this.player, enemy)) {
-            utils.fight(this.player, enemy);
-          }
+        enemy.animate();
+        if (utils.intersect(this.player, enemy)) {
+          utils.fight(this.player, enemy);
         }
       }
       if (this.collection.length < 10) {

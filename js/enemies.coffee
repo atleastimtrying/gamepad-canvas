@@ -10,7 +10,6 @@ class window.classes.Enemies
   
   animate: ->
     for enemy in @collection
-      if enemy.alive
-        enemy.animate()
-        utils.fight @player, enemy if utils.intersect @player,enemy
+      enemy.animate()
+      utils.fight @player, enemy if utils.intersect @player,enemy
     @add() if @collection.length < 10

@@ -8,6 +8,7 @@
     *{
       margin:0;
       padding:0;
+      font-family:sans-serif;
     }
     body{
       position:relative;
@@ -26,8 +27,30 @@
       position:absolute;
       z-index:1;
     }
+    ol{
+      position:absolute;
+      top:5px;
+      right:5px;
+      border-radius:5px;
+      padding:10px;
+      display:block;
+      background:#333;
+      z-index:10;
+    }
+    ol li{
+      list-style:none;
+      border-bottom:1px dotted #efefef;
+      padding:5px;
+      color:#efefef;
+      min-width:200px;
+    }
   </style>
   <body>
+    <ol>
+      <li>size : <strong id='size'></strong></li>
+      <li>deaths : <strong id='deaths'></strong></li>
+      <li>time : <strong id='time'></strong></li>
+    </ol>
     <script>
       window.classes = {};
     </script>

@@ -1,6 +1,7 @@
 (function() {
   window.classes.Utils = (function() {
     function Utils() {}
+    Utils.prototype.maxSize = 10;
     Utils.prototype.animate = function() {
       window.app.animate();
       return requestAnimationFrame(window.utils.animate);
@@ -34,8 +35,11 @@
       loser.die();
       return winner.eat();
     };
-    Utils.prototype.isPlayerBigger = function(player, enemy) {
-      return player.getSize() > enemy.getSize();
+    Utils.prototype.isBigger = function(target, self) {
+      return target.getSize() > self.getSize();
+    };
+    Utils.prototype.angle = function(player, enemy) {
+      return Math.atan2(player.getY() - enemy.getY(), player.getY() - enemy.getY());
     };
     return Utils;
   })();

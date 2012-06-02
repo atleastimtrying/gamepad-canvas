@@ -1,6 +1,7 @@
 class window.classes.Player
   constructor: (@ctx, enemies)->
-    @size = 2
+    @id = Math.random()
+    @size = 10
     @x = utils.roundom 600
     @y = utils.roundom 400
     @xVel = 0
@@ -42,6 +43,6 @@ class window.classes.Player
     @yVel = newY * 2
   
   die: ->
-    #alert 'player died'
-    @x = 0
-    @y = 0
+    app.deaths += 1
+    @x = utils.roundom app.canvas.width
+    @y = utils.roundom app.canvas.width

@@ -1,5 +1,4 @@
 describe "Utils", ->
-
   it 'has a working dist function', ->
     expect(utils.dist 1,1,2,1).toEqual 1
   

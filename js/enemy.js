@@ -3,17 +3,17 @@
     function Enemy(ctx, collection) {
       this.ctx = ctx;
       this.collection = collection;
+      this.id = Math.random();
       this.player = app.player;
-      this.size = utils.roundom(10) + 1;
+      this.size = utils.roundom(utils.maxSize) + 1;
       this.x = utils.roundom(700);
       this.y = utils.roundom(500);
-      this.xVel = 0;
-      this.yVel = 0;
-      this.aimlessX = Math.random(2) - 1;
-      this.aimlessY = Math.random(2) - 1;
+      this.xVel = (Math.random() * 2) - 1;
+      this.yVel = (Math.random() * 2) - 1;
       this.sightRange = this.size * 10;
-      this.alive = true;
+      this.chaseSpeed = 0.005;
       this.colour = "black";
+      this.chasing = false;
     }
     Enemy.prototype.edges = function() {
       if (this.x > app.canvas.width) {
@@ -41,21 +41,44 @@
       this.ctx.fillEllipse(0, 0, this.sightRange);
       return this.ctx.translate(-this.x, -this.y);
     };
-    Enemy.prototype.sense = function() {
-      if (utils.dist(this.player.getX(), this.player.getY(), this.x, this.y) < this.sightRange) {
-        if (utils.isPlayerBigger(this.player, this)) {
-          this.xVel -= 0.1;
-          return this.yVel -= 0.1;
-        } else {
-          return this.colour = "red";
-        }
-      } else {
-
+    Enemy.prototype.canSee = function(target) {
+      return utils.dist(target.getX(), target.getY(), this.x, this.y) < this.sightRange;
+    };
+    Enemy.prototype.sense = function(target) {
+      if (this.canSee(target) && !this.chasing && target.id !== this.id) {
+        return this.chase(target);
       }
     };
+    Enemy.prototype.senseOthers = function() {
+      var enemy, _i, _len, _ref, _results;
+      _ref = app.enemies.collection;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        enemy = _ref[_i];
+        _results.push(this.sense(enemy));
+      }
+      return _results;
+    };
+    Enemy.prototype.chase = function(target) {
+      var mod, xDiff, yDiff;
+      this.chasing = true;
+      if (utils.isBigger(target, this)) {
+        mod = -this.chaseSpeed;
+      } else {
+        mod = this.chaseSpeed;
+      }
+      xDiff = target.getX() - this.x;
+      yDiff = target.getY() - this.y;
+      this.x += xDiff * mod;
+      return this.y += yDiff * mod;
+    };
     Enemy.prototype.animate = function() {
-      this.sense();
-      this.move();
+      this.chasing = false;
+      this.sense(this.player);
+      this.sense;
+      if (!this.chasing) {
+        this.move();
+      }
       this.edges();
       return this.draw();
     };
@@ -76,7 +99,12 @@
       return this.yVel = newY;
     };
     Enemy.prototype.die = function() {
-      return this.alive = false;
+      this.size = utils.roundom(10) + 1;
+      this.x = utils.roundom(app.canvas.width);
+      this.y = utils.roundom(app.canvas.height);
+      this.sightRange = this.size * 10;
+      this.chaseSpeed = utils.maxSize - this.size;
+      return this.chasing = false;
     };
     return Enemy;
   })();

@@ -1,6 +1,7 @@
 (function() {
   window.App = (function() {
     function App() {
+      this.deaths = 0;
       this.input = new window.classes.Input();
       this.canvas = new window.classes.Canvas();
       this.ctx = this.canvas.getContext();
@@ -13,7 +14,9 @@
       results = this.input.read();
       this.player.setVelocity(results.leftStickX, results.leftStickY);
       this.player.animate();
-      return this.enemies.animate();
+      this.enemies.animate();
+      $('#size').html(this.player.getSize());
+      return $('#deaths').html(this.deaths);
     };
     return App;
   })();

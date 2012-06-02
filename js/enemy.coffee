@@ -1,16 +1,16 @@
 class window.classes.Enemy
   constructor: (@ctx, @collection)->
+    @id = Math.random()
     @player = app.player
-    @size = utils.roundom(10) + 1
+    @size = utils.roundom(utils.maxSize) + 1
     @x = utils.roundom 700
     @y = utils.roundom 500
-    @xVel = 0
-    @yVel = 0
-    @aimlessX = Math.random(2) - 1
-    @aimlessY = Math.random(2) - 1
+    @xVel = (Math.random()*2) - 1
+    @yVel = (Math.random()*2) - 1
     @sightRange = @size * 10
-    @alive = true
+    @chaseSpeed = 0.005 #utils.maxSize - @size
     @colour = "black"
+    @chasing = false
 
   edges: ->
     @x = 0 if @x > app.canvas.width
@@ -29,27 +29,38 @@ class window.classes.Enemy
     @ctx.fillStyle = "rgba(0,0,0,0.1)"
     @ctx.fillEllipse 0, 0, @sightRange
     @ctx.translate -@x, -@y
-
-  #dieTest: -> collection.remove(this) if !@alive
   
-  sense: ->
-    if utils.dist(@player.getX(), @player.getY(), @x, @y) < @sightRange
-      if utils.isPlayerBigger @player, @
-        @xVel -= 0.1
-        @yVel -= 0.1
-      else
-        @colour = "red"
-    else
-      #@xVel = @aimlessX
-      #@yVel = @aimlessY
+  canSee: (target)->
+    utils.dist(target.getX(), target.getY(), @x, @y) < @sightRange
+  
+  sense: (target)->
+    if @canSee(target) and !@chasing and target.id isnt @id
+      @chase target
 
+  senseOthers: ->
+    @sense enemy for enemy in app.enemies.collection
+  
+  chase: (target)->
+    @chasing = true
+    if utils.isBigger target, @
+      mod = -@chaseSpeed
+    else
+      mod = @chaseSpeed
+    
+    xDiff = target.getX() - @x
+    yDiff = target.getY() - @y
+
+    @x += xDiff * mod
+    @y += yDiff * mod
+  
   animate: ->
-    #if @alive
-    @sense()
-    @move()
+    @chasing = false
+    @sense @player
+    @sense
+    if !@chasing
+      @move()
     @edges()
     @draw()
-    #@dieTest()
 
   eat: -> "wuh?"
 
@@ -63,4 +74,10 @@ class window.classes.Enemy
     @xVel = newX
     @yVel = newY
   
-  die: -> @alive = false
+  die: -> 
+    @size = utils.roundom(10) + 1
+    @x = utils.roundom app.canvas.width
+    @y = utils.roundom app.canvas.height
+    @sightRange = @size * 10
+    @chaseSpeed = utils.maxSize - @size
+    @chasing = false

@@ -1,4 +1,6 @@
 class window.classes.Utils
+  maxSize: 10
+  
   animate: ->
     window.app.animate()
     requestAnimationFrame window.utils.animate
@@ -28,5 +30,8 @@ class window.classes.Utils
     loser.die()
     winner.eat()
   
-  isPlayerBigger: (player, enemy)->
-    player.getSize() > enemy.getSize()
+  isBigger: (target, self)->
+    target.getSize() > self.getSize()
+
+  angle: (player, enemy)->
+    Math.atan2 player.getY() - enemy.getY() , player.getY() - enemy.getY()

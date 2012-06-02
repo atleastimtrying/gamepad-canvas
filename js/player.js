@@ -2,7 +2,8 @@
   window.classes.Player = (function() {
     function Player(ctx, enemies) {
       this.ctx = ctx;
-      this.size = 2;
+      this.id = Math.random();
+      this.size = 10;
       this.x = utils.roundom(600);
       this.y = utils.roundom(400);
       this.xVel = 0;
@@ -55,8 +56,9 @@
       return this.yVel = newY * 2;
     };
     Player.prototype.die = function() {
-      this.x = 0;
-      return this.y = 0;
+      app.deaths += 1;
+      this.x = utils.roundom(app.canvas.width);
+      return this.y = utils.roundom(app.canvas.width);
     };
     return Player;
   })();
