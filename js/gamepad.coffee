@@ -1,4 +1,7 @@
 class window.Gamepad
   constructor: ->
   getPad: (id)->
-    navigator.webkitGetGamepads()[id].axes
+    result = false
+    if navigator.webkitGetGamepads()
+      result = navigator.webkitGetGamepads()[id].axes
+    false

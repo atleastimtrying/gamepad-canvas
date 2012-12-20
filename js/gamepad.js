@@ -6,7 +6,12 @@
     function Gamepad() {}
 
     Gamepad.prototype.getPad = function(id) {
-      return navigator.webkitGetGamepads()[id].axes;
+      var result;
+      result = false;
+      if (navigator.webkitGetGamepads()) {
+        result = navigator.webkitGetGamepads()[id].axes;
+      }
+      return false;
     };
 
     return Gamepad;
