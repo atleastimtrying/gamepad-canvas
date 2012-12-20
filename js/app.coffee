@@ -4,16 +4,20 @@ class window.App
     @input = new window.classes.Input()
     @canvas = new window.classes.Canvas()
     @ctx = @canvas.getContext()
-    @player = new window.classes.Player @ctx 
-    @enemies = new window.classes.Enemies @ctx, @player
+    @players = []
+    @players.push new window.classes.Player @ctx 
+    @players.push new window.classes.Player @ctx 
+    @enemies = new window.classes.Enemies @ctx, @players
 
   animate: ->
     @canvas.clear()
     results = @input.read()
-    @player.setVelocity results.leftStickX, results.leftStickY
-    @player.animate()
+    @players[0].setVelocity results[0], results[1]
+    @players[1].setVelocity results[2], results[3]
+    @players[0].animate()
+    @players[1].animate()
     @enemies.animate()
-    $('#size').html @player.getSize()
+    $('#size').html @players[0].getSize() + "|" + @players[1].getSize() 
     $('#deaths').html @deaths
 
 $ ->

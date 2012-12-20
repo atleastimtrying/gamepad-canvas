@@ -1,7 +1,7 @@
 class window.classes.Enemy
   constructor: (@ctx, @collection)->
     @id = Math.random()
-    @player = app.player
+    @players = @collection.players
     @size = utils.roundom(utils.maxSize) + 1
     @x = utils.roundom 700
     @y = utils.roundom 500
@@ -37,8 +37,8 @@ class window.classes.Enemy
     if @canSee(target) and !@chasing and target.id isnt @id
       @chase target
 
-  senseOthers: ->
-    @sense enemy for enemy in app.enemies.collection
+  # senseOthers: ->
+  #   @sense enemy for enemy in @collection.collection
   
   chase: (target)->
     @chasing = true
@@ -55,8 +55,8 @@ class window.classes.Enemy
   
   animate: ->
     @chasing = false
-    @sense @player
-    @sense
+    for player in @players
+      @sense player
     if !@chasing
       @move()
     @edges()

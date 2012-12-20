@@ -1,5 +1,5 @@
 class window.classes.Enemies
-  constructor: (@context, @player)->
+  constructor: (@context, @players)->
     @collection = [];
   
   add: ->
@@ -9,7 +9,8 @@ class window.classes.Enemies
     @collection.splice @collection.indexOf(enemy), 1
   
   animate: ->
-    for enemy in @collection
-      enemy.animate()
-      utils.fight @player, enemy if utils.intersect @player,enemy
+    for player in @players
+      for enemy in @collection
+        enemy.animate()
+        utils.fight player, enemy if utils.intersect player,enemy
     @add() if @collection.length < 10
